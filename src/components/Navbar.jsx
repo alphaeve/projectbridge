@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Button } from "@mui/material";
+import Logo from "/acadup.png"; // Make sure the path is correct
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -15,12 +16,14 @@ const Navbar = () => {
   return (
     <nav className="bg-white text-blue-700 px-6 py-4 shadow-sm sticky top-0 z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Left: Logo */}
-        <h1 className="text-2xl font-bold">
-          <Link to="/" className="hover:text-blue-600 transition-all duration-200">
-            ProjectBridge
-          </Link>
-        </h1>
+        {/* Left: Logo Only */}
+        <Link to="/">
+          <img
+            src={Logo}
+            alt="Logo"
+            className="w-20 h-14 object-contain"
+          />
+        </Link>
 
         {/* Center: Username */}
         {user?.username && (
@@ -45,7 +48,6 @@ const Navbar = () => {
               <Button
                 onClick={handleLogout}
                 variant="outlined"
-                color="primary"
                 sx={{
                   borderColor: '#2563eb',
                   color: '#2563eb',
@@ -63,7 +65,7 @@ const Navbar = () => {
           )}
 
           {!user && (
-            <>
+            <div className="flex gap-4">
               <Button
                 onClick={() => navigate("/login")}
                 variant="outlined"
@@ -94,7 +96,7 @@ const Navbar = () => {
               >
                 Register
               </Button>
-            </>
+            </div>
           )}
         </div>
       </div>

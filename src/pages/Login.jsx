@@ -8,6 +8,7 @@ import { useAuth } from "../context/AuthContext";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // ✅ For popup message
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -44,8 +45,12 @@ const Login = () => {
       // 🧠 Step 4: Set user in context
       login({ username, email, role });
 
-      alert("✅ Logged in successfully!");
-      navigate("/dashboard");
+      // ✅ Success message (1.5s), then navigate
+      setSuccessMessage("✅ Logged in successfully! Redirecting...");
+      setTimeout(() => {
+        setSuccessMessage("");
+        navigate("/dashboard");
+      }, 1500);
     } catch (error) {
       console.error("Login error:", error);
       if (error.code === "auth/invalid-credential") {
@@ -57,7 +62,15 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 bg-white p-8 rounded-xl shadow-md border border-gray-200">
+    <div className="max-w-md mx-auto mt-16 bg-white p-8 rounded-xl shadow-md border border-gray-200 relative">
+
+      {/* ✅ Popup Success Message */}
+      {successMessage && (
+        <div className="absolute top-[-70px] left-0 right-0 bg-blue-100 text-blue-800 border border-blue-300 px-4 py-3 rounded-lg text-center shadow-md animate-fade-in-down">
+          {successMessage}
+        </div>
+      )}
+
       <h2 className="text-2xl font-bold text-blue-700 mb-6 text-center">Login</h2>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">

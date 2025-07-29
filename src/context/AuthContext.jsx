@@ -1,15 +1,19 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { auth, db } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // ✅ Login: store in state + localStorage
-  const login = ({ email, username, role }) => {
-    const userData = { email, username, role };
+  // ✅ Add login method
+  const login = ({ username, email, role }) => {
+    const userData = { username, email, role };
     setUser(userData);
-    localStorage.setItem("projectBridgeUser", JSON.stringify(userData));
+    localStorage.setItem("projectBridgeUser", JSON.stringify(userData)); // Optional
   };
 
   const logout = () => {
@@ -17,17 +21,32 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("projectBridgeUser");
   };
 
-  // 🚀 Load user from localStorage on app start
+  // 🚀 Sync with Firebase Auth
   useEffect(() => {
-    const storedUser = localStorage.getItem("projectBridgeUser");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setUser({
+            uid: currentUser.uid,
+            email: currentUser.email,
+            username: userData.username,
+            role: userData.role,
+          });
+        }
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
