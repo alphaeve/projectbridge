@@ -13,12 +13,16 @@ import { AuthProvider } from "./context/AuthContext";
 import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
 import PostSection from "./components/PostSection";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivatePolicy";
+import Terms from "./pages/Terms";
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Navbar />
+        <Navbar />  
         <Routes>
           {/* Public Pages */}
           <Route path="/" element={<Home />} />
@@ -78,6 +82,10 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
 
         </Routes>
       </BrowserRouter>

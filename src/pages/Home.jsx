@@ -10,7 +10,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center px-6 py-28 bg-gradient-to-r from-blue-100 via-blue-50 to-white">
         <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-blue-800 leading-tight">
-          Welcome to <span className="text-blue-600">ProjectBridge</span>
+          Welcome to <span className="text-blue-600">AcadUp</span>
         </h1>
         <p className="text-lg md:text-xl text-gray-600 max-w-2xl mb-10">
           Bridging the gap between students with ideas and coders with skills.
@@ -37,7 +37,7 @@ const Home = () => {
             to="/dashboard"
             className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
           >
-            ✅ Go to Dashboard
+            Go to Dashboard
           </Link>
         )}
       </section>
@@ -97,7 +97,7 @@ const Home = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {[
             {
-              quote: `"I had an idea but no one to build it. Thanks to ProjectBridge, my app is now live!"`,
+              quote: `"I had an idea but no one to build it. Thanks to AcadUp, my app is now live!"`,
               name: "Aanya, Student",
             },
             {
@@ -117,8 +117,8 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-6 text-center text-gray-500 text-sm border-t bg-blue-50">
-        © {new Date().getFullYear()} ProjectBridge · Empowering Student-Coder Collaboration
+      <footer className="py-6 text-center text-gray-500 text-sm border-t bg-blue-50"> 
+        © {new Date().getFullYear()} AcadUp · Empowering Student-Coder Collaboration
       </footer>
     </div>
   );

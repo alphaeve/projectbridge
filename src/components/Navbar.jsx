@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Button } from "@mui/material";
-import Logo from "/acadup.png"; // Make sure the path is correct
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -18,23 +17,24 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Left: Logo Only */}
         <Link to="/">
-          <img
-            src={Logo}
-            alt="Logo"
-            className="w-20 h-14 object-contain"
-          />
+        <Link to="/" className="text-blue-700 text-2xl font-extrabold tracking-wide hover:text-blue-800 transition duration-200">
+  Acad<span className="text-blue-500">Up</span>
+</Link>
+
+
         </Link>
 
         {/* Center: Username */}
         {user?.username && (
           <div className="hidden sm:block px-4 py-1 bg-blue-50 text-blue-800 font-medium rounded-full shadow-inner animate-fade-in">
-            👋 Hello !, <span className="font-semibold">{user.username}</span>
+            👋 Hello , <span className="font-semibold">{user.username}</span>
           </div>
         )}
 
         {/* Right: Nav Links & Buttons */}
         <div className="space-x-6 flex items-center text-sm font-medium">
           <HoverLink to="/">Home</HoverLink>
+          
 
           {user?.role === "student" && <HoverLink to="/post-project">Post Project</HoverLink>}
           {user?.role === "coder" && <HoverLink to="/projects">Browse Projects</HoverLink>}
@@ -42,8 +42,12 @@ const Navbar = () => {
           {user && (
             <>
               <HoverLink to="/dashboard">Dashboard</HoverLink>
-              <HoverLink to="/chat/project123">Chat</HoverLink>
+              {/* <HoverLink to="/chat/project123">Chat</HoverLink> */}
               <HoverLink to="/posts">Post Board</HoverLink>
+              <HoverLink to="/about">About</HoverLink>
+          <HoverLink to="/contact">Contact</HoverLink>
+          <HoverLink to="/privacy-policy">Privacy Policy</HoverLink>
+          <HoverLink to="/terms">Terms</HoverLink>
 
               <Button
                 onClick={handleLogout}
@@ -98,6 +102,7 @@ const Navbar = () => {
               </Button>
             </div>
           )}
+          
         </div>
       </div>
     </nav>
