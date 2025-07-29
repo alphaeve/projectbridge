@@ -28,7 +28,7 @@ const Navbar = () => {
         {/* Center: Username */}
         {user?.username && (
           <div className="hidden sm:block px-4 py-1 bg-blue-50 text-blue-800 font-medium rounded-full shadow-inner animate-fade-in">
-            👋 Hello, <span className="font-semibold">{user.username}</span>
+            👋 Hello !, <span className="font-semibold">{user.username}</span>
           </div>
         )}
 
