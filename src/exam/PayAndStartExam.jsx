@@ -10,8 +10,8 @@ const PayAndStartExam = ({ onSuccess }) => {
 
   const handleRazorpay = () => {
     const options = {
-      key: "rzp_test_50PQCOCCqYzihl", // ✅ Your Test Key
-      amount: 10000, // ₹100 in paise
+      key: "rzp_live_9XF4SqNGyOB0E6", // ✅ Your Test Key
+      amount: 100, // ₹100 in paise
       currency: "INR",
       name: "Acadup",
       description: "Developer Exam Fee",

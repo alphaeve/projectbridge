@@ -77,8 +77,8 @@ const NavLinks = ({ user, handleLogout, navigate, isMobile }) => (
 
     {/* Public links always accessible */}
     <HoverLink to="/about">About</HoverLink>
-    <HoverLink to="/contact">Contact</HoverLink>
-    <HoverLink to="/privacy-policy">Privacy Policy</HoverLink>
+    <HoverLink to="/contact">Contact Us</HoverLink>
+    <HoverLink to="/privacy-policy">Private Policy</HoverLink>
     <HoverLink to="/terms">Terms</HoverLink>
     <HoverLink to="/cancel-refund">Cancel & Refund</HoverLink>
 
