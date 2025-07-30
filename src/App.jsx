@@ -14,11 +14,12 @@ import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
 import PostSection from "./components/PostSection";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
+// import Contact from "./pages/contact";
 import PrivacyPolicy from "./pages/PrivatePolicy";
 import Terms from "./pages/Terms";
 import ExamPage from "./exam/ExamPage";
 import CancelRefund from "./pages/CancelRefund";
+import Contact from "./pages/Contact";
 
 function App() {
   return (

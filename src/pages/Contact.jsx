@@ -10,13 +10,27 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Message sent! We'll contact you soon.");
-    // You can later connect this to backend/email service
     setForm({ name: "", email: "", message: "" });
   };
 
   return (
     <div className="max-w-2xl mx-auto py-10 px-4">
       <h1 className="text-3xl font-bold text-blue-700 mb-6">Contact Us</h1>
+
+      {/* Contact Info Section */}
+      <div className="bg-blue-50 border border-blue-200 rounded-md p-4 mb-6 text-sm text-blue-800">
+        <p className="mb-2">
+          📞 <strong>Mobile:</strong> <a href="tel:9904559104" className="hover:underline">9904559104</a>
+        </p>
+        <p>
+          📧 <strong>Email:</strong>{" "}
+          <a href="mailto:infotapasyaai@gmail.com" className="hover:underline">
+            infotapasyaai@gmail.com
+          </a>
+        </p>
+      </div>
+
+      {/* Form Section */}
       <form onSubmit={handleSubmit} className="space-y-5">
         <input
           type="text"
