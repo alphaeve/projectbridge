@@ -10,7 +10,7 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
-    role: "student",
+    role: "client",
   });
 
   const [successMessage, setSuccessMessage] = useState(""); // ✅ New state for popup
@@ -120,8 +120,8 @@ const Register = () => {
           onChange={handleChange}
           className="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <option value="student">Student</option>
-          <option value="coder">Coder</option>
+          <option value="client">client</option>
+          <option value="Developer">Developer</option>
         </select>
 
         <button

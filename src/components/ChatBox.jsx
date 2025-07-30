@@ -5,8 +5,8 @@ const ChatRoom = () => {
   const { id } = useParams(); // e.g., project or room ID
   const [messages, setMessages] = useState([
     // Temporary dummy messages for layout
-    { text: "Hello, I saw your project post!", sender: "coder", time: "10:30 AM" },
-    { text: "Yes! I need it in React.", sender: "student", time: "10:31 AM" },
+    { text: "Hello, I saw your project post!", sender: "Developer", time: "10:30 AM" },
+    { text: "Yes! I need it in React.", sender: "client", time: "10:31 AM" },
   ]);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
@@ -22,7 +22,7 @@ const ChatRoom = () => {
 
     const newMsg = {
       text: input,
-      sender: "you", // In future, use user role (student/coder)
+      sender: "you", // In future, use user role (client/Developer)
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
@@ -39,14 +39,14 @@ const ChatRoom = () => {
           <div
             key={i}
             className={`flex flex-col mb-2 ${
-              msg.sender === "you" || msg.sender === "student"
+              msg.sender === "you" || msg.sender === "client"
                 ? "items-end"
                 : "items-start"
             }`}
           >
             <div
               className={`px-3 py-2 rounded-lg max-w-xs ${
-                msg.sender === "you" || msg.sender === "student"
+                msg.sender === "you" || msg.sender === "client"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-black"
               }`}

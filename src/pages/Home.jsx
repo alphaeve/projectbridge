@@ -13,7 +13,7 @@ const Home = () => {
           Welcome to <span className="text-blue-600">AcadUp</span>
         </h1>
         <p className="text-lg md:text-xl text-gray-600 max-w-2xl mb-10">
-          Bridging the gap between students with ideas and coders with skills.
+          Bridging the gap between clients with ideas and Developers with skills.
           Collaborate, build, and launch real-world projects together.
         </p>
 
@@ -23,14 +23,14 @@ const Home = () => {
               to="/register"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
             >
-              🚀 Get Started
+               Get Started
             </Link>
-            <Link
+            {/* <Link
               to="/login"
               className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
             >
               🔐 Login
-            </Link>
+            </Link> */}
           </div>
         ) : (
           <Link
@@ -49,8 +49,8 @@ const Home = () => {
         </h2>
         <div className="grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
           {[
-            { title: "📌 Post Projects", text: "Students can submit project ideas and find collaborators." },
-            { title: "💻 Join as Coder", text: "Coders browse available ideas and apply to contribute." },
+            { title: "📌 Post Projects", text: "clients can submit project ideas and find collaborators." },
+            { title: "💻 Join as Developer", text: "Developers browse available ideas and apply to contribute." },
             { title: "🚀 Launch Together", text: "Build and complete projects with teamwork & feedback." },
           ].map((item, index) => (
             <div
@@ -76,7 +76,7 @@ const Home = () => {
           </div>
           <div>
             <h3 className="text-5xl font-extrabold text-yellow-500">800+</h3>
-            <p className="text-gray-600 mt-2">Coders Joined</p>
+            <p className="text-gray-600 mt-2">Developers Joined</p>
           </div>
           <div>
             <h3 className="text-5xl font-extrabold text-blue-500">950+</h3>
@@ -98,11 +98,11 @@ const Home = () => {
           {[
             {
               quote: `"I had an idea but no one to build it. Thanks to AcadUp, my app is now live!"`,
-              name: "Aanya, Student",
+              name: "Aanya, client",
             },
             {
               quote: `"As a developer, I found real-world projects to work on and build my portfolio."`,
-              name: "Ravi, Coder",
+              name: "Ravi, Developer",
             },
           ].map((testimonial, index) => (
             <div
@@ -118,7 +118,7 @@ const Home = () => {
 
       {/* Footer */}
       <footer className="py-6 text-center text-gray-500 text-sm border-t bg-blue-50"> 
-        © {new Date().getFullYear()} AcadUp · Empowering Student-Coder Collaboration
+        © {new Date().getFullYear()} AcadUp · Empowering client-Developer Collaboration
       </footer>
     </div>
   );

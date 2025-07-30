@@ -8,12 +8,12 @@ const Dashboard = () => {
   useEffect(() => {
     const allProjects = JSON.parse(localStorage.getItem("projects")) || [];
 
-    // Filter only projects posted by the logged-in student
-    const studentProjects = allProjects.filter(
+    // Filter only projects posted by the logged-in client
+    const clientProjects = allProjects.filter(
       (project) => project.postedBy === user?.email
     );
 
-    setMyProjects(studentProjects);
+    setMyProjects(clientProjects);
   }, [user]);
 
   return (
