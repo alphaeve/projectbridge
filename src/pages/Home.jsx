@@ -65,7 +65,7 @@ const Home = () => {
         to="/register"
         className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
       >
-        🚀 Get Started
+         Get Started
       </Link>
     </div>
   ) : (
@@ -73,7 +73,7 @@ const Home = () => {
       to="/dashboard"
       className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
     >
-      🔧 Go to Dashboard
+       Go to Dashboard
     </Link>
   )}
 </section>
@@ -86,9 +86,9 @@ const Home = () => {
         </h2>
         <div className="grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
           {[
-            { title: "📌 Post Projects", text: "clients can submit project ideas and find collaborators." },
-            { title: "💻 Join as Developer", text: "Developers browse available ideas and apply to contribute." },
-            { title: "🚀 Launch Together", text: "Build and complete projects with teamwork & feedback." },
+            { title: " Post Projects", text: "clients can submit project ideas and find collaborators." },
+            { title: " Join as Developer", text: "Developers browse available ideas and apply to contribute." },
+            { title: " Launch Together", text: "Build and complete projects with teamwork & feedback." },
           ].map((item, index) => (
             <div
               key={index}

@@ -30,7 +30,7 @@ function PostList() {
 
   const toggleReaction = async (postId, field, hasReacted) => {
     if (!user || !user.username) return;
-  
+
     const postRef = doc(db, "posts", postId);
     await updateDoc(postRef, {
       [field]: hasReacted
@@ -38,7 +38,6 @@ function PostList() {
         : arrayUnion(user.username),
     });
   };
-  
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -52,43 +51,39 @@ function PostList() {
           return (
             <div
               key={post.id}
-              className="bg-white border border-gray-200 p-6 mb-6 rounded-lg shadow-sm hover:shadow-md transition"
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition mb-6 overflow-hidden border border-gray-200"
             >
-              <div className="flex justify-between items-center mb-1">
-                <h3 className="text-lg font-semibold text-blue-700">{post.name}</h3>
-                <small className="text-gray-400 text-sm">
-                  {post.timestamp?.toDate().toLocaleString()}
-                </small>
-              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-semibold text-blue-800">{post.name}</h3>
+                  <span className="text-sm text-gray-400">
+                    {post.timestamp?.toDate().toLocaleString()}
+                  </span>
+                </div>
+                <p className="text-gray-700 mb-4 whitespace-pre-line">{post.content}</p>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => toggleReaction(post.id, "likes", hasLiked)}
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium border transition duration-300 shadow-sm hover:shadow ${
+                      hasLiked
+                        ? "bg-red-100 text-red-600 border-red-300"
+                        : "text-gray-600 border-gray-300 hover:bg-red-50"
+                    }`}
+                  >
+                    ❤️ {post.likes?.length || 0} Like
+                  </button>
 
-              <p className="mt-2 text-gray-700">{post.content}</p>
-
-              <div className="flex items-center gap-4 mt-4 text-sm">
-                {/* ❤️ Like */}
-                <button
-                  onClick={() => toggleReaction(post.id, "likes", hasLiked)}
-                  className={`px-4 py-1.5 rounded-full border transition text-sm font-medium ${
-                    hasLiked
-                      ? "bg-red-100 text-red-600 border-red-300"
-                      : "text-gray-600 border-gray-300 hover:bg-red-50"
-                  }`}
-                >
-                  ❤️ {post.likes?.length || 0} Like
-                </button>
-
-                {/* ⭐ Interested */}
-                <button
-                  onClick={() =>
-                    toggleReaction(post.id, "interested", hasInterested)
-                  }
-                  className={`px-4 py-1.5 rounded-full border transition text-sm font-medium ${
-                    hasInterested
-                      ? "bg-yellow-100 text-yellow-600 border-yellow-300"
-                      : "text-gray-600 border-gray-300 hover:bg-yellow-50"
-                  }`}
-                >
-                  ⭐ {post.interested?.length || 0} Interested
-                </button>
+                  <button
+                    onClick={() => toggleReaction(post.id, "interested", hasInterested)}
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium border transition duration-300 shadow-sm hover:shadow ${
+                      hasInterested
+                        ? "bg-yellow-100 text-yellow-600 border-yellow-300"
+                        : "text-gray-600 border-gray-300 hover:bg-yellow-50"
+                    }`}
+                  >
+                    ⭐ {post.interested?.length || 0} Interested
+                  </button>
+                </div>
               </div>
             </div>
           );
