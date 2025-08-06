@@ -14,6 +14,26 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const renderUsername = () => {
+    if (!user?.username) return null;
+    return (
+      <div className="hidden md:block px-4 py-1 bg-blue-50 text-blue-800 font-medium rounded-full shadow-inner">
+        Hello,{" "}
+        <span className="font-semibold flex items-center gap-1">
+          {user.username}
+          {user?.isSubscribed && (
+            <span
+              title="Subscribed"
+              className="inline-block w-4 h-4 bg-blue-500 text-white rounded-full text-[10px] leading-4 text-center font-bold"
+            >
+              ✓
+            </span>
+          )}
+        </span>
+      </div>
+    );
+  };
+
   return (
     <nav className="bg-white text-blue-700 px-6 py-4 shadow-sm sticky top-0 z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -33,12 +53,8 @@ const Navbar = () => {
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
-        {/* Username */}
-        {user?.username && (
-          <div className="hidden md:block px-4 py-1 bg-blue-50 text-blue-800 font-medium rounded-full shadow-inner">
-            Hello, <span className="font-semibold">{user.username}</span>
-          </div>
-        )}
+        {/* Username (Desktop) */}
+        {renderUsername()}
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center text-sm font-medium">
@@ -51,7 +67,18 @@ const Navbar = () => {
         <div className="md:hidden mt-4 flex flex-col space-y-4 text-sm font-medium">
           {user?.username && (
             <div className="px-4 py-2 bg-blue-50 text-blue-800 rounded-full text-center">
-              Hello, <span className="font-semibold">{user.username}</span>
+              Hello,{" "}
+              <span className="font-semibold flex items-center justify-center gap-1">
+                {user.username}
+                {user?.isSubscribed && (
+                  <span
+                    title="Subscribed"
+                    className="inline-block w-4 h-4 bg-blue-500 text-white rounded-full text-[10px] leading-4 text-center font-bold"
+                  >
+                    ✓
+                  </span>
+                )}
+              </span>
             </div>
           )}
           <NavLinks user={user} handleLogout={handleLogout} navigate={navigate} isMobile />
@@ -78,7 +105,7 @@ const NavLinks = ({ user, handleLogout, navigate, isMobile }) => (
     <HoverLink to="/about">About</HoverLink>
     <HoverLink to="/contact">Contact Us</HoverLink>
 
-    {/* Legal group for desktop */}
+    {/* Legal Dropdown */}
     {!isMobile && (
       <div className="relative group">
         <button className="flex items-center gap-1 hover:text-blue-600 transition-all">

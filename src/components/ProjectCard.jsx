@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, role, isSubscribed }) => {
   const getDeadlineColor = (deadline) => {
     const now = new Date();
     const end = new Date(deadline);
@@ -65,12 +65,23 @@ const ProjectCard = ({ project }) => {
 
       {/* Apply Button */}
       <div className="mt-4">
-        <Link
-          to={`/project/${project.id}/apply`}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition"
-        >
-          Apply Now
-        </Link>
+        {role === "Developer" ? (
+          isSubscribed ? (
+            <Link
+              to={`/project/${project.id}/apply`}
+              className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition"
+            >
+              Apply Now
+            </Link>
+          ) : (
+            <Link
+              to="/subscribe"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium px-4 py-2 rounded-xl transition"
+            >
+              Subscribe to Apply
+            </Link>
+          )
+        ) : null}
       </div>
     </div>
   );

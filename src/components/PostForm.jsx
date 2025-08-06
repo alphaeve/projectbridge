@@ -3,14 +3,15 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import { FaPlus, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function PostForm() {
   const [content, setContent] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const { user } = useAuth();
+  const { user, isSubscribed } = useAuth();
 
   const handlePost = async () => {
-    if (!content.trim() || !user) return;
+    if (!content.trim() || !user || !isSubscribed) return;
 
     try {
       await addDoc(collection(db, "posts"), {
@@ -23,12 +24,24 @@ function PostForm() {
       });
 
       setContent("");
-      setShowForm(false); // hide form after posting
+      setShowForm(false);
     } catch (error) {
       console.error("Error posting:", error);
       alert("❌ Failed to post. Try again.");
     }
   };
+
+  // Show a message if not subscribed
+  if (!isSubscribed) {
+    return (
+      <div className="max-w-4xl mx-auto my-10 text-center bg-yellow-100 border border-yellow-300 p-4 rounded-md text-yellow-800">
+        🚫 You need a subscription to create or share posts.{" "}
+        <Link to="/subscribe" className="text-blue-600 font-semibold underline">
+          Subscribe Now
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto mb-8">

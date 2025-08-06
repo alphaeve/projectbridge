@@ -20,6 +20,9 @@ import Terms from "./pages/Terms";
 import ExamPage from "./exam/ExamPage";
 import CancelRefund from "./pages/CancelRefund";
 import Contact from "./pages/Contact";
+import SubscriptionProtectedRoute from "./components/SubscriptionProtectedRoute";
+import Subscribe from "./pages/Subscribe";
+
 
 
 
@@ -53,6 +56,17 @@ function App() {
             }
           />
 
+{/* <Route
+  path="/post-project"
+  element={
+    <ProtectedRoute allowedRoles={["client"]}>
+      <SubscriptionProtectedRoute>
+        <PostProject />
+      </SubscriptionProtectedRoute>
+    </ProtectedRoute>
+  }
+/> */}
+
           <Route
             path="/projects"
             element={
@@ -62,15 +76,24 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             path="/project/:id/apply"
             element={
               <ProtectedRoute allowedRoles={["Developer"]}>
                 <ApplyProject />
               </ProtectedRoute>
             }
-          />
-
+          /> */}
+        <Route
+  path="/project/:id/apply"
+  element={
+    <ProtectedRoute allowedRoles={["Developer"]}>
+      <SubscriptionProtectedRoute>
+        <ApplyProject />
+      </SubscriptionProtectedRoute>
+    </ProtectedRoute>
+  }
+/>
           <Route
             path="/chat/:id"
             element={
@@ -87,6 +110,17 @@ function App() {
               </ProtectedRoute>
             }
           />
+          {/* <Route
+  path="/posts"
+  element={
+    <ProtectedRoute allowedRoles={["client", "Developer"]}>
+      <SubscriptionProtectedRoute>
+        <PostSection />
+      </SubscriptionProtectedRoute>
+    </ProtectedRoute>
+  } */}
+{/* /> */}
+          <Route path="/subscribe" element={<Subscribe />} />
           <Route path="/about" element={<About />} />
           <Route path="/cancel-refund" element={<CancelRefund />} />
           <Route path="/contact" element={<Contact />} />
@@ -103,43 +137,3 @@ function App() {
 export default App;
 
 
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Home from "./pages/Home";
-// import Dashboard from "./pages/Dashboard";
-// import PostProject from "./pages/PostProject";
-// import ChatRoom from "./pages/ChatRoom";
-// import ApplyProject from "./pages/ApplyProject";
-// import ProjectBrowse from "./pages/ProjectBrowse";
-// import Navbar from "./components/Navbar";
-// import { AuthProvider } from "./context/AuthContext";
-// import PostSection from "./components/PostSection";
-// import About from "./pages/About";
-// import Contact from "./pages/Contact";
-// import PrivacyPolicy from "./pages/PrivatePolicy";
-// import Terms from "./pages/Terms";
-
-// function App() {
-//   return (
-//     <AuthProvider>
-//       <BrowserRouter>
-//         <Navbar />
-//         <Routes>
-//           {/* Public Pages */}
-//           <Route path="/" element={<Home />} />
-//           <Route path="/dashboard" element={<Dashboard />} />
-//           <Route path="/post-project" element={<PostProject />} />
-//           <Route path="/projects" element={<ProjectBrowse />} />
-//           <Route path="/project/:id/apply" element={<ApplyProject />} />
-//           <Route path="/chat/:id" element={<ChatRoom />} />
-//           <Route path="/posts" element={<PostSection />} />
-//           <Route path="/about" element={<About />} />
-//           <Route path="/contact" element={<Contact />} />
-//           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-//           <Route path="/terms" element={<Terms />} />
-//         </Routes>
-//       </BrowserRouter>
-//     </AuthProvider>
-//   );
-// }
-
-// export default App;

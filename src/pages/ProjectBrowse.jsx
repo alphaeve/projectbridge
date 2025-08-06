@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import ProjectCard from "../components/ProjectCard";
-import { Search, Filter } from "lucide-react"; // optional icons if you're using lucide
+import { Search } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 const ProjectBrowse = () => {
   const [projects, setProjects] = useState([]);
@@ -13,6 +14,8 @@ const ProjectBrowse = () => {
   const [sort, setSort] = useState("deadline");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+
+  const { user, isSubscribed } = useAuth();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -52,10 +55,10 @@ const ProjectBrowse = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       <h2 className="text-4xl font-bold text-center text-blue-700 mb-10">
-         Explore Projects
+        Explore Projects
       </h2>
 
-      {/* 🔍 Search + 🔃 Sort Controls */}
+      {/* 🔍 Search + Sort Controls */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
         <div className="relative w-full md:w-1/2">
           <input
@@ -63,7 +66,7 @@ const ProjectBrowse = () => {
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
-              setCurrentPage(1); // reset to page 1 on new search
+              setCurrentPage(1);
             }}
             placeholder="Search projects by title..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
@@ -95,6 +98,8 @@ const ProjectBrowse = () => {
               project={project}
               onSaveFavorite={handleSaveFavorite}
               isFavorite={favorites.includes(project.id)}
+              role={user?.role}
+              isSubscribed={isSubscribed}
             />
           ))}
         </div>

@@ -1,83 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import SubscriptionBlink from "../components/SubscriptionBlink";
 
 const Home = () => {
   const { user } = useAuth();
 
   return (
     <div className="min-h-screen bg-white text-gray-800 font-sans">
+
+      {/* ✨ Blinking Subscription Promo */}
+      <SubscriptionBlink />
+
       {/* Hero Section */}
-     {/* Hero Section */}
-     {/* 🎓 Highlighted Exam Call-To-Action */}
-{/* 🎓 Compact Exam Ad Section */}
-{/* 🎓 Compact Exam Ad Section */}
-<section className="relative px-6 py-10 bg-gradient-to-br from-yellow-100 via-white to-pink-100 border-y border-yellow-300 shadow-inner">
-  <div className="max-w-4xl mx-auto text-center relative">
-    
-    {/* 🆕 New badge */}
-    <div className="absolute top-2 right-4 bg-red-600 text-white text-xs px-3 py-1 rounded-full animate-pulse">
-      🆕 NEW
-    </div>
+      <section className="flex flex-col items-center justify-center text-center px-6 py-28 bg-gradient-to-r from-blue-100 via-white to-blue-50">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-blue-800 leading-tight">
+          Welcome to <span className="text-blue-600">AcadUp</span>
+        </h1>
+        <p className="text-lg md:text-xl text-gray-700 max-w-2xl mb-10">
+          Bridging the gap between <strong>clients with ideas</strong> and <strong>developers with skills</strong>. Collaborate, build, and launch real-world projects together.
+        </p>
 
-    <h2 className="text-2xl md:text-3xl font-bold text-purple-700 mb-2">
-      Developer Skill Exam
-    </h2>
-
-    <p className="text-sm text-gray-600 mb-1 italic">
-      Technical + Aptitude + Puzzle Based
-    </p>
-
-    <p className="text-sm text-pink-600 font-semibold mb-3">
-      📅 Upcoming Soon!
-    </p>
-
-    <ul className="text-sm md:text-base text-gray-800 mb-4 leading-relaxed">
-      <li>🏆 <strong>Top 3:</strong> Remote Developer Job Offer</li>
-      <li>🎯 <strong>Rank 4–5:</strong> Remote Internship</li>
-      <li>🎓 <strong>Rank 6–10:</strong> Certificate of Excellence</li>
-    </ul>
-
-    <Link
-      to="/exam"
-      className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm px-6 py-2 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
-    >
-      📝 Take the Exam
-    </Link>
-
-    <p className="mt-2 text-xs text-gray-600">₹100 only · 30-minute time-limited test</p>
-  </div>
-</section>
-
-
-
-<section className="flex flex-col items-center justify-center text-center px-6 py-28 bg-gradient-to-r from-blue-100 via-white to-blue-50">
-  <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-blue-800 leading-tight">
-    Welcome to <span className="text-blue-600">AcadUp</span>
-  </h1>
-  <p className="text-lg md:text-xl text-gray-700 max-w-2xl mb-10">
-    Bridging the gap between <strong>clients with ideas</strong> and <strong>developers with skills</strong>. Collaborate, build, and launch real-world projects together.
-  </p>
-
-  {!user ? (
-    <div className="flex gap-6 flex-wrap justify-center">
-      <Link
-        to="/register"
-        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
-      >
-         Get Started
-      </Link>
-    </div>
-  ) : (
-    <Link
-      to="/dashboard"
-      className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
-    >
-       Go to Dashboard
-    </Link>
-  )}
-</section>
-
+        {!user ? (
+          <div className="flex gap-6 flex-wrap justify-center">
+            <Link
+              to="/register"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
+            >
+              Get Started
+            </Link>
+          </div>
+        ) : (
+          <Link
+            to="/dashboard"
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
+          >
+            Go to Dashboard
+          </Link>
+        )}
+      </section>
 
       {/* What We Do */}
       <section className="px-6 py-20 bg-white">
@@ -153,8 +114,46 @@ const Home = () => {
         </div>
       </section>
 
+      {/* 🎓 Moved Developer Skill Exam Section to Bottom */}
+      <section className="relative px-6 py-10 bg-gradient-to-br from-yellow-100 via-white to-pink-100 border-y border-yellow-300 shadow-inner">
+        <div className="max-w-4xl mx-auto text-center relative">
+
+          {/* 🆕 New badge */}
+          <div className="absolute top-2 right-4 bg-red-600 text-white text-xs px-3 py-1 rounded-full animate-pulse">
+            🆕 NEW
+          </div>
+
+          <h2 className="text-2xl md:text-3xl font-bold text-purple-700 mb-2">
+            Developer Skill Exam
+          </h2>
+
+          <p className="text-sm text-gray-600 mb-1 italic">
+            Technical + Aptitude + Puzzle Based
+          </p>
+
+          <p className="text-sm text-pink-600 font-semibold mb-3">
+            📅 Upcoming Soon!
+          </p>
+
+          <ul className="text-sm md:text-base text-gray-800 mb-4 leading-relaxed">
+            <li>🏆 <strong>Top 3:</strong> Remote Developer Job Offer</li>
+            <li>🎯 <strong>Rank 4–5:</strong> Remote Internship</li>
+            <li>🎓 <strong>Rank 6–10:</strong> Certificate of Excellence</li>
+          </ul>
+
+          <Link
+            to="/exam"
+            className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm px-6 py-2 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
+          >
+            📝 Take the Exam
+          </Link>
+
+          <p className="mt-2 text-xs text-gray-600">₹100 only · 30-minute time-limited test</p>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="py-6 text-center text-gray-500 text-sm border-t bg-blue-50"> 
+      <footer className="py-6 text-center text-gray-500 text-sm border-t bg-blue-50">
         © {new Date().getFullYear()} AcadUp · Empowering client-Developer Collaboration
       </footer>
     </div>
