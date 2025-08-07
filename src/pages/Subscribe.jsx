@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 
+
 const Subscribe = () => {
   const { user } = useAuth();
 
@@ -15,7 +16,7 @@ const Subscribe = () => {
     }
 
     const options = {
-      key: "rzp_live_9XF4SqNGyOB0E6", // Replace with your Razorpay Key ID
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,// Replace with your Razorpay Key ID
       amount: 29900, // ₹299 in paisa
       currency: "INR",
       name: "Acadup",
